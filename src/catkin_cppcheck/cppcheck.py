@@ -15,14 +15,12 @@ def check(paths, enabled_checks, excludes=None, quiet=False, verbose=False):
 
     cmd = 'cppcheck --force --enable={} {} {}'.format(checks, paths, quiet)
 
-    output = ''
     try:
         output = subprocess.check_output(shlex.split(cmd))
+        logging.info(output)
     except subprocess.CalledProcessError as e:
         if verbose:
             logging.exception(str(e))
-
         logging.error(e.output)
-
-
-    logging.info(output)
+    except OSError as e:
+        logging.error('Could not run cppcheck. {}. Is cppcheck installed and in your path?'.format(e))
