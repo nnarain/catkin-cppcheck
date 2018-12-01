@@ -3,7 +3,7 @@ import logging
 import subprocess
 
 
-def check(paths, enabled_checks, excludes=None, quiet=False):
+def check(paths, enabled_checks, excludes=None, quiet=False, verbose=False):
     """
     :param paths: List of paths to check
     :param enabled_checks: List of enabled cppchecks
@@ -19,6 +19,10 @@ def check(paths, enabled_checks, excludes=None, quiet=False):
     try:
         output = subprocess.check_output(shlex.split(cmd))
     except subprocess.CalledProcessError as e:
-        logging.warn('"{}" has exited with code {}'.format(cmd, e.returncode))
+        if verbose:
+            logging.exception(str(e))
+
+        logging.error(e.output)
+
 
     logging.info(output)
