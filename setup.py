@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='catkin-cppcheck',
-    version='0.0.1',
+    version='0.0.3',
     author='Natesh Narain',
     author_email='nnaraindev@gmail.com',
     description='Run cppcheck on catkin packages',
