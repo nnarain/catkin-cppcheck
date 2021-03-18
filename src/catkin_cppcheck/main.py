@@ -1,4 +1,4 @@
-import cppcheck
+import catkin_cppcheck.cppcheck as cppcheck
 
 import os
 import logging
